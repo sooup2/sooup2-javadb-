@@ -6,11 +6,14 @@ public class Main {
 		
 		Rect1 rect1 = new Rect1();
 		Rect2 rect2 = new Rect2();
+		Rect3 rect3 = new Rect3();
 		
 		System.out.print("1. ");
 		rect1.printXY();
 		System.out.print("2. ");
 		rect2.printXYAD();
+		System.out.println("3. ");
+		rect3.prtRect();
 	}
 
 }
@@ -30,8 +33,19 @@ class Point{
 	}
 	public Point ()
 	{
-		this.x = 0;
-		this.y = 0;
+		this.setX(x);
+		this.setY(y);
+	}
+	
+	public Point (Point p)
+	{
+		this.setX(p.x);
+		this.setY(p.y);
+	}
+
+	public void printXY()
+	{
+		System.out.print("("+x+","+y+"),");
 	}
 }
 
@@ -51,6 +65,7 @@ class Rect1{
 		spot.SetXY(3,3);
 		System.out.println("("+spot.getX()+","+spot.getY()+")입니다.");
 	}
+	
 }
 
 class Rect2{
@@ -78,6 +93,38 @@ class Rect2{
 
 class Rect3{
 	
-	private Point leftUp;
-	private Point RightDown;
+	private Point leftUp = new Point();
+	private Point RightDown = new Point();
+	private double Widht;
+	private double height;
+	public Point getLeftUp() {return leftUp;}
+	public void setLeftUp(Point leftUp) {this.leftUp = leftUp;}
+	public Point getRightDown() {return RightDown;}
+	public void setRightDown(Point rightDown) {RightDown = rightDown;}
+	public double getWidht() {return Widht;}
+	public void setWidht(double widht) {Widht = widht;}
+	public double getHeight() {return height;}
+	public void setHeight(double height) {this.height = height;}
+	
+	
+	
+	public double calWid()
+	{
+		return RightDown.getX()-leftUp.getX();
+	}
+	public double calHei()
+	{
+		return leftUp.getY()-RightDown.getY();
+	}
+	
+	public void prtRect()
+	{
+		System.out.print("이 사각형은 좌상단 좌표 ");
+		leftUp.printXY();
+		System.out.print("우 하단 좌표 ");
+		RightDown.printXY();
+		System.out.println("가로길이" + calWid()+ "세로길이 " + calHei()+"로 이루어져 있습니다.");
+	}
+	
+	
 }
